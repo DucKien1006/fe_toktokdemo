@@ -1,0 +1,20 @@
+.plus-icon{
+    background: url('@/assets/icon/Sprites.4b10a131.svg') no-repeat -801px -313px;
+	width: 14px;
+	height: 14px;
+}
+.heart_black-icon{
+	background: url('@/assets/icon/heart-icon.png') no-repeat;
+	width: 24px;
+	height: 24px;
+}
+.heart_active-icon{
+	background: url('@/assets/icon/heart-active-icon.png') no-repeat;
+	width: 24px;
+	height: 24px;
+}
+.comment-icon{
+	background: url('@/assets/icon/Sprites.4b10a131.svg') no-repeat -568px -30px;
+	width: 24px;
+	height: 24px;
+}

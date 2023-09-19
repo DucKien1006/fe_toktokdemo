@@ -1,0 +1,12 @@
+# File docker-compose.yml cho front-end
+
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: ./de_toktokdemo
+      dockerfile: Dockerfile
+    image: frontend
+    ports:
+      - 8080:8080
