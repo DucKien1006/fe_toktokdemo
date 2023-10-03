@@ -6,6 +6,8 @@
             <TheBody></TheBody>
         </div>
     </div>
+    <!-- <LoginView></LoginView> -->
+    <!-- <RegisterView></RegisterView> -->
 
 </template>
 
@@ -13,13 +15,17 @@
 import TheHeader from '@/components/layout/TheHeader.vue';
 import TheBody from '@/components/layout/TheBody.vue';
 import TheSidebar from '@/components/layout/TheSidebar.vue';
+// import RegisterView from '@/views/RegisterView.vue';
+// import LoginView from '@/views/LoginView.vue';
 export default {
     name: "ThePage",
     components:{
-        TheHeader,
-        TheBody, 
-        TheSidebar
-    }
+    TheHeader,
+    TheBody,
+    TheSidebar,
+    // RegisterView,
+    // LoginView
+}
 };
 
 </script>

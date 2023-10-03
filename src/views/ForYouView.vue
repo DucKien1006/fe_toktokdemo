@@ -1,51 +1,109 @@
 <template>
-    <div class="body-container">
-        <div class="post_item">
-            <div class="author">
-                <!-- <img src="https://avatars.githubusercontent.com/u/1234567890?v=4" alt="Avatar"> -->
-                <span>Tên tác giả</span>
-            </div>
-            <div class="time">
-                <span>12h trước</span>
-            </div>
-            <div class="caption">
-                <p>Caption</p>
-            </div>
-            <video class="post_video" src="https://youtu.be/yYAgBRO-aT8?si=YnYpJSIyf8FkRXcm" controls></video>
-            <div class="like_comment">
-                <BaseIcon iconClass="heart_black-icon"></BaseIcon>
-                <BaseIcon icon="comment-icon"></BaseIcon>
-            </div>
+  <div class="body-container">
+
+
+    <div class="post_item">
+      <div class="post_item-left">
+        <div class="author">
+          <!-- <img src="https://avatars.githubusercontent.com/u/1234567890?v=4" alt="Avatar"> -->
+          <div class="author_name">Tên tác giả</div>
         </div>
-        <div class="body_footer">
-            
+        <div class="time">
+          <span>12h trước</span>
         </div>
+        <div class="caption">
+          <p>Caption</p>
+        </div>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/AyziJnIR_1w?si=-IKBifd-QU39NbUi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+        <video id="my-video" controls>
+          <source src="https://drive.google.com/uc?export=view&id=1234567890" type="application/x-mpegURL">
+        </video>
+        
+      </div>
+      <div class="post_item-right">
+        <BaseIcon iconClass="heart_black-icon"></BaseIcon>
+        <BaseIcon iconClass="comment-icon"></BaseIcon>
+      </div>
     </div>
+    <!-- <div class="post_item">
+      <div class="post_item-left">
+        <div class="author">
+          <div class="author_name">Tên tác giả</div>
+        </div>
+        <div class="time">
+          <span>12h trước</span>
+        </div>
+        <div class="caption">
+          <p>Caption</p>
+        </div>
+        <video class="post_video" controls>
+          <source src="https://youtu.be/yYAgBRO-aT8?si=YnYpJSIyf8FkRXcm" type="video/mp4">
+          <source src="https://www.tiktok.com/@quynhbei/video/7278614820143025410?is_from_webapp=1&sender_device=pc"
+            type="video/mp4">
+
+        </video>
+      </div> 
+    <div class="post_item-right">
+      <BaseIcon iconClass="heart_black-icon"></BaseIcon>
+      <BaseIcon iconClass="comment-icon"></BaseIcon>
+    </div>
+  </div>-->
+    <div class="body_footer">
+      <BaseIcon iconClass="arrow_up_black-icon"></BaseIcon>
+      <BaseIcon iconClass="arrow_down_black-icon"></BaseIcon>
+    </div>
+  </div>
 </template>
 
 <script>
 import BaseIcon from '@/components/base/BaseIcon.vue';
 
-export default{
-    name: "ForYouView",
-    components:{
-        BaseIcon,
+export default {
+  name: "ForYouView",
+  components: {
+    BaseIcon,
 
-    },
+  },
+  data(){
+    return{
+      listPosts: [],
+
+    }
+  },
 
 }
 </script>
 
 <style scoped>
 .body-container {
-    width: calc(100vw - var(--sidebar-width));
-
-}
-.post_item {
-  width: 100%;
+  width: calc(100vw - var(--sidebar-width));
   display: flex;
   flex-direction: column;
+  gap: 24px;
+  /* position: relative; */
+}
+
+.post_item {
+  width: 600px;
+  display: flex;
+  flex-direction: row;
   padding: 10px;
+  margin-left: 100px;
+}
+
+.post_item-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.post_item-right {
+  width: 50px;
+  max-width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding-left: 12px;
 }
 
 .author {
@@ -59,9 +117,12 @@ export default{
   border-radius: 50%;
 }
 
-.author span {
+
+.author_name {
   margin-left: 10px;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 700;
+
 }
 
 .time {
@@ -74,13 +135,18 @@ export default{
 }
 
 .post_item .post_video {
-  width: 300px;
-  height: 120px;
+  /* width: 400px;
+  height: 200px; */
 }
 
-.like_comment {
+.body_footer {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  width: fit-content;
+  height: fit-content;
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  flex-direction: column;
+  gap: 26px;
 }
 </style>

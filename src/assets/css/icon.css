@@ -18,3 +18,21 @@
 	width: 24px;
 	height: 24px;
 }
+.arrow_down_black-icon{
+	background: url('@/assets/icon/Sprites.64af8f61.svg') no-repeat -371px -364px;
+	width: 10px;
+	height: 8px;
+	transform: scale(2);
+
+}
+.arrow_up_black-icon{
+	background: url('@/assets/icon/Sprites.64af8f61.svg') no-repeat -371px -364px;
+	width: 10px;
+	height: 8px;
+	transform: scale(2) rotate(180deg);
+}
+.close-icon{
+	background: url('@/assets/icon/close.png') no-repeat;
+	width: 18px;
+	height: 18px;
+}

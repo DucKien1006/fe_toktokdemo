@@ -19,8 +19,8 @@ export default {
 <style scoped>
 @import url("@/assets/css/icon.css"); 
 .b-icon{
-    width: 20px;
-    height: 20px;
-
+    /* width: 20px;
+    height: 20px; */
+    cursor: pointer;    
 }
 </style>

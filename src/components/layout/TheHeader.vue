@@ -9,9 +9,9 @@
             <img src="@/assets/icon/search.png" alt="" />
         </div>
         <div class="right">
-            <div class="upload-button">
+            <div class="upload-button" @click="openAddPopup">
                 <BaseIcon iconClass="plus-icon"></BaseIcon>
-                <div id="upload-btn">Upload</div>
+                <div id="upload-text">Upload</div>
             </div>
             <div class="user-avatar">
                 <img src="@/assets/image/user.png" alt="Avatar" />
@@ -19,14 +19,34 @@
             <div class="username">Đức Kiên</div>
         </div>
     </header>
+    <teleport to='body'>
+        <AddPopup v-if="stateAddPopup" @closePopupAdd="closePopupAdd"></AddPopup>
+    </teleport>
 </template>
 
 <script>
 import BaseIcon from '@/components/base/BaseIcon.vue';
+import AddPopup from '@/views/AddPopup.vue';
 export default {
     name: "TheHeader",
     components: {
         BaseIcon,
+        AddPopup
+    },
+    data() {
+        return {
+            stateAddPopup: true,
+        };
+    },
+    methods:{
+        openAddPopup(){
+            // alert("click on Upload btn");
+            this.stateAddPopup = true;
+        },
+        closePopupAdd(){
+            this.stateAddPopup = false;
+        },
+
     },
 
 };
@@ -94,20 +114,22 @@ header {
     align-items: center;
     justify-content: center;
     margin-right: 32px;
+    cursor: pointer;
+    font-size: 16;
+    font-weight: 700;
 }
 
-.right .upload-icon .plus-icon {
-    padding-top: 2px;
-    padding-left: 2px;
+.right .upload-button icon {
+    margin-right: 8px;
 }
 
-.right .upload-icon #upload-btn {
+/* .right .upload-button #upload-text {
     border: unset;
     background-color: #fff;
     height: 36px;
     font-size: 16px;
     font-weight: 500;
-}
+} */
 
 .user-avatar {
     width: 24px;
@@ -116,7 +138,8 @@ header {
     margin-right: 12px;
 
 }
-.username{
+
+.username {
     font-size: 18px;
     font-weight: 600;
 }
