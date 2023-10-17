@@ -18,7 +18,7 @@ const getPostById = (postId) => {
  * Thêm bài đăng
  */
 const addPost = (post) => {
-    return axiosAPI.post('/Posts', post);
+    return axiosAPI.post('/Post/Insert2', post);
 };
 /**
  * Sửa bài đăng

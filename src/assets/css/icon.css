@@ -36,3 +36,8 @@
 	width: 18px;
 	height: 18px;
 }
+.option-icon{
+	background: url('@/assets/icon/Sprites.4b10a131.svg') no-repeat -847px -35px;
+	width: 16px;
+	height: 14px;
+}

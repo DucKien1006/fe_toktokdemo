@@ -8,8 +8,17 @@ const routers = [
   },
   {
     path: '/login',
-    component: () => import('@/views/LoginView.vue')
+    component: () => import('@/views/LoginView.vue'),
+    redirect:{
+      path: '@/views/ForYouView.vue',
+      replace: true,
+    }
   },
+  {
+    path: '/forYouView',
+    component: () => import('@/views/ForYouView.vue')
+  },
+
 ];
 
 const router = createRouter({

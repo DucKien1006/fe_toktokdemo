@@ -5,6 +5,6 @@ import router from '@/routers/index.js'
 
 
 
-createApp(App).mount('#app')
-            .use(store)
+createApp(App).use(store)
             .use(router)
+            .mount('#app')

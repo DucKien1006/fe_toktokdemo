@@ -1,3 +1,4 @@
+<!-- eslint-disable no-undef -->
 <template>
     <header>
         <div class="left">
@@ -13,40 +14,88 @@
                 <BaseIcon iconClass="plus-icon"></BaseIcon>
                 <div id="upload-text">Upload</div>
             </div>
-            <div class="user-avatar">
-                <img src="@/assets/image/user.png" alt="Avatar" />
+            <div class="option-button" @click="openOptionMenu">
+                <BaseIcon iconClass="option-icon"></BaseIcon>
+                <ul v-if="stateOptionMenu">
+                    <li @click="openLoginView">Đăng nhập</li>
+                    <li @click="openRegisterView">Đăng ký</li>
+                    <li v-show="isLogin" @click="logOut">Đăng xuất</li>
+                </ul>
             </div>
-            <div class="username">Đức Kiên</div>
+            <div class="headerSession" v-if="isLogin">
+                <div class="user-avatar">
+                    <img src="@/assets/image/user.png" alt="Avatar" />
+                </div>
+                <div class="username">{{ stateUserName }}</div>
+            </div>
+
         </div>
     </header>
     <teleport to='body'>
         <AddPopup v-if="stateAddPopup" @closePopupAdd="closePopupAdd"></AddPopup>
+    </teleport>
+
+    <teleport to="body">
+        <LoginView v-if="stateLoginView" @closeLoginForm="closeLoginView"></LoginView>
+    </teleport>
+    <teleport to="body">
+        <RegisterView v-if="stateRegisterView" @closeRegisterForm="closeRegisterForm"></RegisterView>
     </teleport>
 </template>
 
 <script>
 import BaseIcon from '@/components/base/BaseIcon.vue';
 import AddPopup from '@/views/AddPopup.vue';
+import LoginView from '@/views/LoginView.vue';
+import RegisterView from '@/views/RegisterView.vue';
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
     name: "TheHeader",
     components: {
         BaseIcon,
-        AddPopup
+        AddPopup,
+        LoginView,
+        RegisterView,
+    },
+    computed: {
+        ...mapGetters(['stateLogin', 'stateUserName']),
+        
     },
     data() {
         return {
-            stateAddPopup: true,
+            stateAddPopup: false,
+            stateOptionMenu: false,
+            stateLoginView: false,
+            stateRegisterView: false,
+            // username: this.stateUserName,
         };
     },
-    methods:{
-        openAddPopup(){
-            // alert("click on Upload btn");
+    methods: {
+        ...mapMutations(["setLogin"]),
+        openAddPopup() {
             this.stateAddPopup = true;
         },
-        closePopupAdd(){
+        closePopupAdd() {
             this.stateAddPopup = false;
         },
-
+        openOptionMenu() {
+            // this.stateOptionMenu = true;
+            this.stateOptionMenu = !this.stateOptionMenu;
+        },
+        openLoginView() {
+            this.stateLoginView = true;
+        },
+        closeLoginView() {
+            this.stateLoginView = false;
+        },
+        openRegisterView() {
+            this.stateRegisterView = true;
+         },
+        closeRegisterForm(){
+            this.stateRegisterView = false;
+        },
+        logOut() { },
     },
 
 };
@@ -130,6 +179,33 @@ header {
     font-size: 16px;
     font-weight: 500;
 } */
+
+.right .option-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right .option-button ul {
+    position: relative;
+    top: 44px;
+    right: 20px;
+    border: 1px solid #e2e1e1;
+    width: 80px;
+}
+
+.right .option-button li {
+    height: 32px;
+    line-height: 32px;
+    min-height: 32px;
+    /* background-color: #eed5c0; */
+    text-align: center;
+}
+
+.right .option-button li:hover {
+    background-color: #58d3eb;
+
+}
 
 .user-avatar {
     width: 24px;

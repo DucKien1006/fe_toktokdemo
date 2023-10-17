@@ -2,11 +2,11 @@
   <div class="body-container">
 
 
-    <div class="post_item">
+    <div class="post_item" v-for="(item, index) in listPosts" :key="index">
       <div class="post_item-left">
         <div class="author">
           <!-- <img src="https://avatars.githubusercontent.com/u/1234567890?v=4" alt="Avatar"> -->
-          <div class="author_name">Tên tác giả</div>
+          <div class="author_name" >Tên tác giả</div>
         </div>
         <div class="time">
           <span>12h trước</span>
@@ -16,13 +16,13 @@
         </div>
         <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/AyziJnIR_1w?si=-IKBifd-QU39NbUi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         <video id="my-video" controls>
-          <source src="https://drive.google.com/uc?export=view&id=1234567890" type="application/x-mpegURL">
+          <source src="C:\Users\ducki\Videos\TikTok\videotest1" type="application/x-mpegURL">
         </video>
-        
+
       </div>
       <div class="post_item-right">
-        <BaseIcon iconClass="heart_black-icon"></BaseIcon>
-        <BaseIcon iconClass="comment-icon"></BaseIcon>
+        <BaseIcon iconClass="heart_black-icon" @click="onClickLike"></BaseIcon>
+        <BaseIcon iconClass="comment-icon" @click="onClickComment"></BaseIcon>
       </div>
     </div>
     <!-- <div class="post_item">
@@ -57,20 +57,48 @@
 
 <script>
 import BaseIcon from '@/components/base/BaseIcon.vue';
-
+import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { addLike, deleteLike } from '@/api/like';
+// import { addComment, updateComment, deleteComment } from '@/api/comment'
 export default {
   name: "ForYouView",
   components: {
     BaseIcon,
 
   },
-  data(){
-    return{
+  computed: {
+    ...mapGetters(['stateLogin', 'stateUserName', 'stateUserId']),
+  },
+  data() {
+    return {
       listPosts: [],
 
     }
   },
+  methods: {
+    ...mapMutations([]),
+    ...mapActions([]),
+    async onClickLike(postId, stateLike) {
+      if (stateLike) { //nếu hiện tại đã có like(tức bây giờ unlike)
+        //lấy likeId ra để gọi api xóa like
+        var likeId;
+        await deleteLike(likeId);
+      } else { //nếu hiện tại chưa like(tức bây giờ like)
+        var likeDetail = {
+          userId: this.stateUserId,
+          postId: postId,
 
+        }
+        //gọi api thêm like
+
+        await addLike(likeDetail);
+      }
+
+    },
+    onClickComment() {
+
+    },
+  },
 }
 </script>
 

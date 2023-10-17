@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const urlApi = {
-    localUrl: "https://localhost:7034/api/",
+    localUrl: "https://localhost:8080/api/v1",
 };
 
 /**
